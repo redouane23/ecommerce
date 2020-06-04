@@ -222,7 +222,7 @@
             loop: true,
             nav: false,
             items: 1,
-            dots: false,
+            dots: true,
             margin: 20,
             //autoWidth:true,
             //autoHeight:true,
