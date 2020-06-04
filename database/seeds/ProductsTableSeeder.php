@@ -12,7 +12,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
 
-        $products = ['tomate', 'apple'];
+        $products = ['tomate', 'pomme'];
 
         foreach ($products as $product) {
 

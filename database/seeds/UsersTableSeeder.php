@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('admin')
         ]);
 
-        $user->attachRole('admin');
+        $user->attachRole('super_admin');
 
         $user->carts()->create([]);
 
