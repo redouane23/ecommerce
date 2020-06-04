@@ -77,7 +77,8 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $supplier->name }}</td>
-                                                <td>{{ implode(array_filter($supplier->phone),'-') }}</td>
+                                                {{--                                                <td>{{ implode(array_filter($supplier->phone),'-') }}</td>--}}
+                                                <td>{{ $supplier->phone[0] }}</td>
                                                 <td>{!! $supplier->address !!}</td>
                                                 <td>
                                                     <a href="{{ route('dashboard.products.index', ['supplier_id' => $supplier->id]) }}"
