@@ -6,7 +6,7 @@
                                         alt="User Image">
         <div>
             <p class="app-sidebar__user-name">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
-            <p class="app-sidebar__user-designation">Frontend Developer</p>
+            <p class="app-sidebar__user-designation">{{ auth()->user()->email }}</p>
         </div>
     </div>
     <ul class="app-menu">
