@@ -25,20 +25,20 @@
 
     {{--    </section><!--end of slide section-->--}}
 
-    <div class="container mt-2 p-0">
+    {{--    <div class="container mt-2 p-0">--}}
 
-        <div class="row">
+    {{--        <div class="row">--}}
 
-            <div class="col-md-12 text-secondary d-flex justify-content-center align-items-center">
+    {{--            <div class="col-md-12 text-secondary d-flex justify-content-center align-items-center">--}}
 
-                <h3 class="text-capitalize text-primary fw-300">@lang('site.our_products')</h3>
+    {{--                <h3 class="text-capitalize text-primary fw-300">@lang('site.our_products')</h3>--}}
 
-            </div>
+    {{--            </div>--}}
 
-        </div><!--end of row-->
+    {{--        </div><!--end of row-->--}}
 
 
-    </div><!--end of container-->
+    {{--    </div><!--end of container-->--}}
 
     @foreach ($categories as $category)
 
