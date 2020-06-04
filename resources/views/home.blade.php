@@ -9,14 +9,14 @@
 
             <div class="slide text-white d-flex justify-content-center align-items-center">
 
-                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">
+                {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
 
 
             </div><!--end of slide-->
 
             <div class="slide text-white d-flex justify-content-center align-items-center">
 
-                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">
+                {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
 
 
             </div><!--end of slide-->

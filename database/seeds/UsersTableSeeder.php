@@ -25,14 +25,14 @@ class UsersTableSeeder extends Seeder
         $user->carts()->create([]);
 
         $user = \App\User::create([
-            'first_name' => 'chafik',
-            'last_name' => 'aissaoui',
-            'email' => 'chafik.hnn@gmail.com',
+            'first_name' => 'admin',
+            'last_name' => 'admin',
+            'email' => 'admin@app.com',
             'image' => 'default.png',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('admin')
         ]);
 
-        $user->attachRole('client');
+        $user->attachRole('admin');
 
         $user->carts()->create([]);
 
