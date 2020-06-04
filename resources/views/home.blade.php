@@ -40,93 +40,93 @@
 
     {{--    </div><!--end of container-->--}}
 
-    @foreach ($categories as $category)
+    {{--    @foreach ($categories as $category)--}}
 
-        @if ($category->limitProducts->count() > 0)
+    {{--        @if ($category->limitProducts->count() > 0)--}}
 
-            <section class="listing mb-4">
+    {{--            <section class="listing mb-4">--}}
 
-                <div class="container">
+    {{--                <div class="container">--}}
 
-                    <div class="row  my-2">
+    {{--                    <div class="row  my-2">--}}
 
-                        <div class="col-12 d-flex justify-content-between">
+    {{--                        <div class="col-12 d-flex justify-content-between">--}}
 
-                            <h3 class="listing__title text-dark fw-500 text-capitalize">{{ $category->name }}</h3>
-                            <a href="" class="align-self-center text-primary text-capitalize">@lang('site.see_all')</a>
+    {{--                            <h3 class="listing__title text-dark fw-500 text-capitalize">{{ $category->name }}</h3>--}}
+    {{--                            <a href="" class="align-self-center text-primary text-capitalize">@lang('site.see_all')</a>--}}
 
-                        </div>
+    {{--                        </div>--}}
 
-                    </div><!--end of row-->
+    {{--                    </div><!--end of row-->--}}
 
-                    <div class="row">
+    {{--                    <div class="row">--}}
 
-                        @foreach ($category->limitProducts as $product)
+    {{--                        @foreach ($category->limitProducts as $product)--}}
 
-                            <div class="product col-12 my-2 col-md-3">
+    {{--                            <div class="product col-12 my-2 col-md-3">--}}
 
-                                <img src="{{ $product->image_path }}" class="img-thumbnail" alt=""
-                                     style="height: 227px;width: 100%">
+    {{--                                <img src="{{ $product->image_path }}" class="img-thumbnail" alt=""--}}
+    {{--                                     style="height: 227px;width: 100%">--}}
 
-                                <div class="d-flex">
+    {{--                                <div class="d-flex">--}}
 
-                                    <p class="product__name mb-0 text-capitalize">{{ $product->name }}</p>
+    {{--                                    <p class="product__name mb-0 text-capitalize">{{ $product->name }}</p>--}}
 
-                                </div>
+    {{--                                </div>--}}
 
-                                <div class="d-flex">
+    {{--                                <div class="d-flex">--}}
 
-                                    <p class="product__price mb-0 text-capitalize">{{ $product->sale_price }}</p>
+    {{--                                    <p class="product__price mb-0 text-capitalize">{{ $product->sale_price }}</p>--}}
 
-                                </div>
+    {{--                                </div>--}}
 
-                                <div class="d-flex justify-content-between align-items-center">
+    {{--                                <div class="d-flex justify-content-between align-items-center">--}}
 
-                                    @guest
-                                        <a
-                                            href="{{ route('login') }}"
-                                            class="product__details-button btn btn-outline-primary text-capitalize text-primary flex-fill mr-1"
-                                        >
-                                        <span
-                                            class="fas fa-shopping-cart"></span>
-                                            @lang('site.add_to_cart')
-                                        </a>
+    {{--                                    @guest--}}
+    {{--                                        <a--}}
+    {{--                                            href="{{ route('login') }}"--}}
+    {{--                                            class="product__details-button btn btn-outline-primary text-capitalize text-primary flex-fill mr-1"--}}
+    {{--                                        >--}}
+    {{--                                        <span--}}
+    {{--                                            class="fas fa-shopping-cart"></span>--}}
+    {{--                                            @lang('site.add_to_cart')--}}
+    {{--                                        </a>--}}
 
-                                    @else
+    {{--                                    @else--}}
 
-                                        <a
-                                            class="btn {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? 'btn-danger disabled text-white' : 'btn-outline-primary add-product-btn text-primary' }} product__details-button text-capitalize flex-fill mr-1"
-                                            data-id="{{ $product->id }}"
-                                            data-cart="{{ Auth::user()->cart()->id }}">
-                                                                                <span
-                                                                                    class="fas fa-shopping-cart"></span>
-                                            {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? Lang::get('site.added_to_cart') : Lang::get('site.add_to_cart') }}
-                                        </a>
+    {{--                                        <a--}}
+    {{--                                            class="btn {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? 'btn-danger disabled text-white' : 'btn-outline-primary add-product-btn text-primary' }} product__details-button text-capitalize flex-fill mr-1"--}}
+    {{--                                            data-id="{{ $product->id }}"--}}
+    {{--                                            data-cart="{{ Auth::user()->cart()->id }}">--}}
+    {{--                                                                                <span--}}
+    {{--                                                                                    class="fas fa-shopping-cart"></span>--}}
+    {{--                                            {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? Lang::get('site.added_to_cart') : Lang::get('site.add_to_cart') }}--}}
+    {{--                                        </a>--}}
 
-                                    @endguest
+    {{--                                    @endguest--}}
 
-                                    <a href="{{ route('product', $product->id) }}"
-                                       class="product__details-button btn btn-primary text-capitalize"><span
-                                            class="fas fa-info"></span>
-                                        @lang('site.info')
-                                    </a>
+    {{--                                    <a href="{{ route('product', $product->id) }}"--}}
+    {{--                                       class="product__details-button btn btn-primary text-capitalize"><span--}}
+    {{--                                            class="fas fa-info"></span>--}}
+    {{--                                        @lang('site.info')--}}
+    {{--                                    </a>--}}
 
-                                </div><!--end of movie details-->
+    {{--                                </div><!--end of movie details-->--}}
 
 
-                            </div><!--end of col-->
+    {{--                            </div><!--end of col-->--}}
 
-                        @endforeach
+    {{--                        @endforeach--}}
 
-                    </div><!--end of owl slides-->
+    {{--                    </div><!--end of owl slides-->--}}
 
-                </div><!--end of container-->
+    {{--                </div><!--end of container-->--}}
 
-            </section><!--end of products section-->
+    {{--            </section><!--end of products section-->--}}
 
-        @endif
+    {{--        @endif--}}
 
-    @endforeach
+    {{--    @endforeach--}}
 
 
 @endsection
