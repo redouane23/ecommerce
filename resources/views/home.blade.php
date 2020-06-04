@@ -2,28 +2,28 @@
 
 @section('content')
 
-    <section id="slide" class="container mb-2 py-2">
+    {{--    <section id="slide" class="container mb-2 py-2">--}}
 
-        <div class="slides owl-carousel owl-theme">
-
-
-            <div class="slide text-white d-flex justify-content-center align-items-center">
-
-                {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
+    {{--        <div class="slides owl-carousel owl-theme">--}}
 
 
-            </div><!--end of slide-->
+    {{--            <div class="slide text-white d-flex justify-content-center align-items-center">--}}
 
-            <div class="slide text-white d-flex justify-content-center align-items-center">
-
-                {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
+    {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
 
 
-            </div><!--end of slide-->
+    {{--            </div><!--end of slide-->--}}
 
-        </div><!--end of slides-->
+    {{--            <div class="slide text-white d-flex justify-content-center align-items-center">--}}
 
-    </section><!--end of slide section-->
+    {{--                <img src="dist/images/support.jpg" class="img-fluid" alt="" style="height: 400px;width: 100%">--}}
+
+
+    {{--            </div><!--end of slide-->--}}
+
+    {{--        </div><!--end of slides-->--}}
+
+    {{--    </section><!--end of slide section-->--}}
 
     <div class="container mt-2 p-0">
 
