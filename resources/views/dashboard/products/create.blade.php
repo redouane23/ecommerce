@@ -99,7 +99,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text">DZD</span></div>
-                                                <input type="number" name="purchase_price" class="form-control"
+                                                <input type="number" step="0.01" name="purchase_price"
+                                                       class="form-control"
                                                        placeholder="@lang('site.amount')"
                                                        value="{{ old('purchase_price') }}">
                                                 <div class="input-group-append"><span
@@ -114,7 +115,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text">DZD</span></div>
-                                                <input type="number" name="sale_price" class="form-control"
+                                                <input type="number" step="0.01" name="sale_price" class="form-control"
                                                        placeholder="@lang('site.amount')"
                                                        value="{{ old('sale_price') }}">
                                                 <div class="input-group-append"><span

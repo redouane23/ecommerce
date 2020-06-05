@@ -92,8 +92,10 @@ return [
     'cart' => 'panier',
     'add_to_cart' => 'ajouter au panier',
     'added_to_cart' => 'ajouté au panier',
+    'updated_in_cart' => 'mis à jour dans le panier',
     'deleted_from_cart' => 'supprimé du panier',
     'empty_cart' => 'panier vide',
+    'confirm_your_order' => 'confirmer votre commande',
     'info' => 'info',
 
     'ar' => [

@@ -34,22 +34,22 @@
                         class="app-menu__label">@lang('site.clients')</span></a></li>
         @endif
         @if (auth()->user()->hasPermission('read_orders'))
-            {{--            <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.clients.index') }}"><i--}}
-            {{--                        class="app-menu__icon fa fa-th"></i><span--}}
-            {{--                        class="app-menu__label">@lang('site.clients')</span></a></li>--}}
+            <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.orders.index') }}"><i
+                        class="app-menu__icon fa fa-th"></i><span
+                        class="app-menu__label">@lang('site.orders')</span></a></li>
 
-            <li class="treeview"><a class="app-menu__item text-capitalize" href="#"
-                                    data-toggle="treeview"><i
-                        class="app-menu__icon fa fa-th"></i><span class="app-menu__label">@lang('site.orders')</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item text-capitalize" href="{{ route('dashboard.orders.index') }}"><i
-                                class="icon fa fa-circle-o"></i> @lang('site.pending_orders')</a>
-                    </li>
-                    {{--                    <li><a class="treeview-item text-capitalize" href="widgets.html"><i--}}
-                    {{--                                class="icon fa fa-circle-o"></i>@lang('site.orders_received')</a></li>--}}
-                </ul>
-            </li>
+            {{--            <li class="treeview"><a class="app-menu__item text-capitalize" href="#"--}}
+            {{--                                    data-toggle="treeview"><i--}}
+            {{--                        class="app-menu__icon fa fa-th"></i><span class="app-menu__label">@lang('site.orders')</span><i--}}
+            {{--                        class="treeview-indicator fa fa-angle-right"></i></a>--}}
+            {{--                <ul class="treeview-menu">--}}
+            {{--                    <li><a class="treeview-item text-capitalize" href="{{ route('dashboard.orders.index') }}"><i--}}
+            {{--                                class="icon fa fa-circle-o"></i> @lang('site.pending_orders')</a>--}}
+            {{--                    </li>--}}
+            {{--                    --}}{{--                    <li><a class="treeview-item text-capitalize" href="widgets.html"><i--}}
+            {{--                    --}}{{--                                class="icon fa fa-circle-o"></i>@lang('site.orders_received')</a></li>--}}
+            {{--                </ul>--}}
+            {{--            </li>--}}
             {{--            <li class="treeview"><a class="app-menu__item text-capitalize" href="#" data-toggle="treeview"><i--}}
             {{--                        class="app-menu__icon fa fa-th"></i><span--}}
             {{--                        class="app-menu__label">@lang('site.all_orders')</span><i--}}

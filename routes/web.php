@@ -26,5 +26,7 @@ Route::get('/product/{id}', 'HomeController@product')->name('product');
 // cart routes ajax
 // add product
 Route::post('carts/add', 'Dashboard\CartController@store')->name('carts.add');
+// update product
+Route::put('carts/update', 'Dashboard\CartController@update')->name('carts.update');
 // delete product
 Route::delete('carts/delete', 'Dashboard\CartController@destroy')->name('carts.delete');

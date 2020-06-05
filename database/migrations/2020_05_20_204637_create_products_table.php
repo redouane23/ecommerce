@@ -20,9 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('image')->default('default.png');
-            $table->double('purchase_price', 8, 2);
-            $table->double('sale_price', 8, 2);
-            $table->integer('stock');
+            $table->double('purchase_price', 10, 0);
+            $table->double('sale_price', 10, 0);
+            $table->integer('stock')->default(0);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

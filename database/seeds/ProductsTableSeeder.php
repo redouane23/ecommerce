@@ -21,9 +21,9 @@ class ProductsTableSeeder extends Seeder
                 'supplier_id' => 1,
                 'name' => $product,
                 'description' => $product . ' desc',
-                'purchase_price' => 160,
-                'sale_price' => 200,
-                'stock' => 100,
+                'purchase_price' => 5000,
+                'sale_price' => 10000,
+                'stock' => 10,
             ]);
         }
 

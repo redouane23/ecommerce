@@ -42,6 +42,11 @@ $(document).ready(function () {
                     killer: true
                 }).show();
 
+            },
+            error: function (data) {
+
+                console.log('Error:', data);
+
             }
 
         });
@@ -56,6 +61,65 @@ $(document).ready(function () {
         e.preventDefault();
 
     });//end of disabled
+
+    //update product btn
+    $('body').on('click', '.update-product-btn', function (e) {
+
+        e.preventDefault();
+        var value = $(this).data('value');
+        var id = $(this).data('id');
+        var cart = $(this).data('cart');
+        var quantity = parseFloat($('#quantity' + id).html().replace(/,/g, ''));
+
+
+        if (value == "down") {
+
+            if (quantity > 1) {
+
+                quantity -= 1;
+
+            }
+
+        } else {
+
+            quantity += 1;
+        }
+
+        //alert(quantity);
+        $.ajax({
+
+            type: 'PUT',
+            data: {product_id: id, cart: cart, quantity: quantity},
+            url: 'carts/update',
+
+
+            success: function (data) {
+
+                //alert(data.success);
+                $('#quantity' + data.id).html($.number(data.quantity, 0));
+                $('#total_price' + data.id).html($.number(data.total_price, 0));
+                //$('.cart-count').html(data.cartCount);
+                $('.total-price').html($.number(data.cart.total_price, 0));
+
+                new Noty({
+                    type: 'success',
+                    layout: 'topRight',
+                    text: data.success,
+                    timeout: 1500,
+                    killer: true
+                }).show();
+
+
+            },
+            error: function (data) {
+
+                console.log('Error:', data);
+
+            }
+
+        });
+
+    });//end of update product btn
 
     //remove product btn
     $('body').on('click', '.remove-product-btn', function (e) {
@@ -77,6 +141,14 @@ $(document).ready(function () {
                 //alert(data.success);
                 $('#id' + data.id).closest('tr').remove();
                 $('.cart-count').html(data.cartCount);
+                $('.total-price').html(data.cart.total_price);
+
+                if (data.cartCount == 0) {
+
+                    $('#non-empty').hide();
+                    $('#empty').show();
+
+                }
 
                 new Noty({
                     type: 'success',
@@ -85,6 +157,11 @@ $(document).ready(function () {
                     timeout: 1500,
                     killer: true
                 }).show();
+
+            },
+            error: function (data) {
+
+                console.log('Error:', data);
 
             }
 
