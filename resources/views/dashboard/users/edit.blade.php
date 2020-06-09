@@ -78,7 +78,11 @@
 
                                 <div class="form-group">
 
-                                    <img src="{{ $user->image_path }}" style="width: 100px"
+                                    {{--                                    <img src="{{ $user->image_path }}" style="width: 100px"--}}
+                                    {{--                                         class="img-thumbnail image-preview">--}}
+
+                                    <img src="{{ URL::to('/') }}/uploads/user_images/{{ $user->image }}"
+                                         style="width: 100px"
                                          class="img-thumbnail image-preview">
 
                                 </div>
