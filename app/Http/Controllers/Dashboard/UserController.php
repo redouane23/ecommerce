@@ -107,7 +107,8 @@ class UserController extends Controller
 
             if ($user->image != 'default.png') {
 
-                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+                //Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+                Storage::delete(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
             } //end of if
 
