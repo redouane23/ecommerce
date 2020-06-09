@@ -17,11 +17,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         // client routes
         Route::resource('clients', 'ClientController')->except(['show']);
-        Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
+        Route::resource('clients.orders', 'Client\OrderController');
 
         // order routes
         Route::resource('orders', 'OrderController');
         Route::get('orders/{order}/products', 'OrderController@products')->name('orders.products');
+        // confirm cart
+        Route::post('orders/confirm', 'OrderController@confirm')->name('order.confirm');
 
 
         // user routes

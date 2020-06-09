@@ -11,7 +11,9 @@
                 <div class="col-md-12 p-0 mb-md-2">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-light">
-                            <li class="breadcrumb-item text-capitalize"><a href="#">{{ $product->category->name }}</a>
+                            <li class="breadcrumb-item text-capitalize"><a
+                                    href="{{ route('products', ['category_id' => $product->category->id]) }}">
+                                    {{ $product->category->name }}</a>
                             </li>
                             <li class="breadcrumb-item text-capitalize active"
                                 aria-current="page">{{ $product->name }}</li>
@@ -32,13 +34,32 @@
                 <div class="col-12 col-md-7 pr-0">
 
                     <div class="product__details d-flex justify-content-between">
+
                         <p class="product__name text-capitalize align-self-center m-0">{{ $product->name }}</p>
-                        <button
-                            class="add-product-btn product__details-button btn btn-outline-primary btn-sm text-capitalize align-self-center">
+
+                        @guest
+                            <a
+                                href="{{ route('login') }}"
+                                class="product__details-button btn btn-outline-primary btn-sm text-capitalize text-primary align-self-center"
+                            >
                                         <span
                                             class="fas fa-shopping-cart"></span>
-                            @lang('site.add_to_cart')
-                        </button>
+                                @lang('site.add_to_cart')
+                            </a>
+
+                        @else
+
+                            <a
+                                class="btn {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? 'btn-danger disabled text-white' : 'btn-outline-primary add-product-btn text-primary' }} product__details-button text-capitalize btn-sm mr-1"
+                                data-id="{{ $product->id }}"
+                                data-cart="{{ Auth::user()->cart()->id }}"
+                                data-route="{{ route('carts.add') }}">
+                                                                                <span
+                                                                                    class="fas fa-shopping-cart"></span>
+                                {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? Lang::get('site.added_to_cart') : Lang::get('site.add_to_cart') }}
+                            </a>
+
+                        @endguest
                     </div>
 
                     {{--                    <div class="d-flex">--}}
@@ -88,7 +109,7 @@
 
                 <div class="row">
 
-                    @foreach ($product->category->products as $pro)
+                    @foreach ($product->category->products->slice(0, in_array($product->id, $product->category->products->slice(0, 4)->pluck('id')->toArray()) ? '5' : '4') as $pro)
 
                         @if($pro->id != $product->id)
 
@@ -111,19 +132,29 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
 
-                                    <button
-                                        class="add-product-btn product__details-button btn btn-outline-primary text-capitalize flex-fill mr-1">
+                                    @guest
+                                        <a
+                                            href="{{ route('login') }}"
+                                            class="product__details-button btn btn-outline-primary text-capitalize text-primary flex-fill mr-1"
+                                        >
                                         <span
                                             class="fas fa-shopping-cart"></span>
-                                        @lang('site.add_to_cart')
-                                    </button>
+                                            @lang('site.add_to_cart')
+                                        </a>
 
-                                    {{--                                    <a--}}
-                                    {{--                                       class="product__details-button btn btn-outline-primary text-capitalize flex-fill mr-1 add-product-btn">--}}
-                                    {{--                                        <span--}}
-                                    {{--                                            class="fas fa-shopping-cart"></span>--}}
-                                    {{--                                        @lang('site.add_to_cart')--}}
-                                    {{--                                    </a>--}}
+                                    @else
+
+                                        <a
+                                            class="btn {{ in_array($pro->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? 'btn-danger disabled text-white' : 'btn-outline-primary add-product-btn text-primary' }} product__details-button text-capitalize flex-fill mr-1"
+                                            data-id="{{ $pro->id }}"
+                                            data-cart="{{ Auth::user()->cart()->id }}"
+                                            data-route="{{ route('carts.add') }}">
+                                                                                <span
+                                                                                    class="fas fa-shopping-cart"></span>
+                                            {{ in_array($pro->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? Lang::get('site.added_to_cart') : Lang::get('site.add_to_cart') }}
+                                        </a>
+
+                                    @endguest
 
                                     <a href="{{ route('product', $pro->id) }}"
                                        class="product__details-button btn btn-primary text-capitalize"><span

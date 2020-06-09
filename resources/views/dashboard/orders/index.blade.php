@@ -17,7 +17,7 @@
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-8 p-0">
 
                 <div class="tile">
                     <div class="tile-body m-0">
@@ -33,7 +33,24 @@
                                                value="{{ request()->search }}">
                                     </div>
 
-                                    <div class="col-12 col-md-6 d-flex justify-content-between">
+                                    <div class="col-6 mb-2 mb-md-0 col-md-3 p-0">
+                                        <select name="paid" value="" class="form-control mr-1">
+
+                                            <option value="">@lang('site.all_orders')</option>
+                                            <option
+                                                value="0" {{ request()->paid == '0' ? 'selected':'' }}>
+                                                @lang('site.pending')
+                                            </option>
+                                            <option
+                                                value="1" {{ request()->paid == '1' ? 'selected':'' }}>
+                                                @lang('site.confirmed')
+                                            </option>
+
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-6 col-md-3">
 
                                         <button type="submit" class="btn btn-primary"><i
                                                 class="fa fa-search"></i>@lang('site.search')</button>
@@ -66,22 +83,11 @@
                                                 </tr>
 
                                                 @foreach ($orders as $order)
-                                                    <tr>
+                                                    <tr class="{{ $order->paid ? '' : 'table-warning' }}">
                                                         <td>{{ $order->user->first_name }}  {{ $order->user->last_name }}</td>
                                                         <td>{{ number_format($order->total_price, 2) }}</td>
-                                                        {{--<td>--}}
-                                                        {{--<button--}}
-                                                        {{--data-status="@lang('site.' . $order->status)"--}}
-                                                        {{--data-url="{{ route('dashboard.orders.update_status', $order->id) }}"--}}
-                                                        {{--data-method="put"--}}
-                                                        {{--data-available-status='["@lang('site.processing')", "@lang('site.finished') "]'--}}
-                                                        {{--class="order-status-btn btn {{ $order->status == 'processing' ? 'btn-warning' : 'btn-success disabled' }} btn-sm"--}}
-                                                        {{-->--}}
-                                                        {{--@lang('site.' . $order->status)--}}
-                                                        {{--</button>--}}
-                                                        {{--</td>--}}
                                                         <td>{{ $order->created_at->toFormattedDateString() }}</td>
-                                                        <td>
+                                                        <td class="px-0">
                                                             <button class="btn btn-primary btn-sm order-products"
                                                                     data-url="{{ route('dashboard.orders.products', $order->id) }}"
                                                                     data-method="get"
@@ -91,7 +97,7 @@
                                                             </button>
                                                             @if (auth()->user()->hasPermission('update_orders'))
                                                                 <a href="{{ route('dashboard.clients.orders.edit', ['client' => $order->user->id, 'order' => $order->id]) }}"
-                                                                   class="btn btn-warning btn-sm my-2 my-md-0"><i
+                                                                   class="btn btn-info btn-sm my-2 my-md-0"><i
                                                                         class="fa fa-pencil"></i> @lang('site.edit')</a>
                                                             @else
                                                                 <a href="#" disabled class="btn btn-warning btn-sm"><i
@@ -115,6 +121,22 @@
                                                                         class="fa fa-trash"></i> @lang('site.delete')
                                                                 </a>
                                                             @endif
+
+
+                                                            <button
+                                                                id="orderbtn{{ $order->id }}"
+                                                                class="btn {{ $order->paid ? 'btn-danger':'btn-warning' }} btn-sm confirm-order-btn"
+                                                                data-order="{{ $order->id }}"
+                                                                data-route="{{ route('dashboard.order.confirm') }}">
+                                                                <i class="fa fa-money"></i>
+
+                                                                <span id="order{{ $order->id }}">@if($order->paid)
+                                                                        @lang('site.cancel')
+                                                                    @else
+                                                                        @lang('site.confirm')
+                                                                    @endif
+                                                                </span>
+                                                            </button>
 
                                                         </td>
 

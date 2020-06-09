@@ -12,7 +12,7 @@ return [
         ],
         'admin' => [],
         'client' => [
-            'products' => 'r',
+            //'products' => 'r',
             'orders' => 'c,r,u,d',
         ],
     ],

@@ -1,20 +1,35 @@
 $(document).ready(function () {
 
+    $.ajaxSetup({
+
+        headers: {
+
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+        }
+
+    });
+
     //add product btn
     $('.add-product-btn').on('click', function (e) {
 
         e.preventDefault();
         var name = $(this).data('name');
         var id = $(this).data('id');
-        var price = $.number($(this).data('price'), 2);
+        var price = $(this).data('price');
+        var display_price = $.number($(this).data('price'), 2);
+
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
 
         var html =
             `<tr>
                 <td>${name}</td>
-                <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
-                <td class="product-price">${price}</td>
+                <td>
+                <input type="hidden" name="products[${id}][price]" value="${price}">
+                <input type="number" name="products[${id}][quantity]" data-price="${display_price}" class="form-control input-sm product-quantity" min="1" value="1">
+                </td>
+                <td class="product-price">${display_price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
 
@@ -44,6 +59,69 @@ $(document).ready(function () {
         calculateTotal();
 
     });//end of remove product btn
+
+    //confirm order btn
+    $('body').on('click', '.confirm-order-btn', function (e) {
+
+        e.preventDefault();
+        var order = $(this).data('order');
+        var route = $(this).data('route');
+
+        //alert(order + route);
+
+        swal({
+            title: "",
+            //text: "You will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "OUI",
+            cancelButtonText: "NON",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                swal("", "", "success");
+                $.ajax({
+
+                    type: 'POST',
+                    data: {order: order},
+                    url: route,
+
+                    success: function (data) {
+
+                        if (data.order.paid) {
+                            $('#order' + data.order.id).text(data.canceled);
+                            $('#orderbtn' + data.order.id).removeClass('btn-warning').addClass('btn-danger');
+                            $('#orderbtn' + data.order.id).closest('tr').removeClass('table-warning');
+                        } else {
+                            $('#order' + data.order.id).text(data.confirm);
+                            $('#orderbtn' + data.order.id).removeClass('btn-danger').addClass('btn-warning');
+                            $('#orderbtn' + data.order.id).closest('tr').addClass('table-warning');
+                        }
+
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: data.success,
+                            timeout: 1500,
+                            killer: true
+                        }).show();
+
+                    },
+                    error: function (data) {
+
+                        console.log('Error:', data);
+
+                    }
+
+                });
+            } else {
+                swal("", "", "error");
+            }
+        });
+
+
+    });//confirm order btn
 
     //change product quantity
     $('body').on('keyup change', '.product-quantity', function () {

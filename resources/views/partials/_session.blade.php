@@ -1,5 +1,6 @@
 @if (session('success'))
     <script>
+
         new Noty({
             type: 'success',
             layout: 'topRight',
@@ -7,5 +8,9 @@
             timeout: 2000,
             killer: true
         }).show();
+
+    </script>
+    <script>
+        swal("@lang('site.deleted')", "", "success");
     </script>
 @endif

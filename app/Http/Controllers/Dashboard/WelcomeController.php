@@ -20,8 +20,9 @@ class WelcomeController extends Controller
         $suppliers = Supplier::all();
         $products = Product::all();
         $clients = User::whereRoleIs('client');
-        $orders = Order::all();
-        return view('dashboard.welcome', compact('users', 'categories', 'suppliers', 'products', 'clients', 'orders'));
+        $orders_pending = Order::where('paid', '=', '0');
+        $orders_confirmed = Order::where('paid', '=', '1');
+        return view('dashboard.welcome', compact('users', 'categories', 'suppliers', 'products', 'clients', 'orders_pending', 'orders_confirmed'));
 
     }// end of index
 

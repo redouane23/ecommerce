@@ -11,12 +11,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
-    }
-
-    public function limitProducts()
-    {
-        return $this->hasMany(Product::class)->groupBy();
+        return $this->hasMany(Product::class)->latest();
     }
 
 }

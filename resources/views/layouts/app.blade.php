@@ -81,16 +81,43 @@
 
             <div class="collapse in navbar-collapse" id="navbarSupportedContent">
 
-                <form action="" class="col-12 p-2 col-md-5 mt-1 mt-md-1 ml-0 mr-2 mr-md-0">
-                    <div class="input-group">
-                        <input class="form-control py-2 border-right-0 border search"
+                {{--                <form action="" class="col-12 p-2 col-md-5 mt-1 mt-md-1 ml-0 mr-2 mr-md-0">--}}
+                {{--                    <div class="input-group">--}}
+                {{--                        <input class="form-control py-2 border-right-0 border search"--}}
+                {{--                               placeholder="@lang('site.search')"--}}
+                {{--                               type="search" name="search" id="example-search-input" value="{{ request()->search }}">--}}
+                {{--                        <span class="input-group-append">--}}
+                {{--                    <div class="input-group-text bg-white text-primary search__icon"><i class="fa fa-search">--}}
+                {{--                    </i>--}}
+                {{--                    </div>--}}
+                {{--                </span>--}}
+                {{--                    </div>--}}
+                {{--                </form>--}}
+
+                <form action="" class="col-12 p-2 col-md-6 mt-1 mt-md-1 ml-0 mr-2 mr-md-0">
+                    <div class="input-group bg-light">
+
+                        <select name="category_id" value="" class="form-control category px-md-1 col-md-4">
+
+                            <option value="">@lang('site.all_categories')</option>
+                            @foreach ($categories as $category)
+                                <option
+                                    value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected':'' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+
+                        </select>
+
+                        <input class="form-control py-2 search "
                                placeholder="@lang('site.search')"
                                type="search" name="search" id="example-search-input" value="{{ request()->search }}">
                         <span class="input-group-append">
-                    <div class="input-group-text bg-white text-primary search__icon"><i class="fa fa-search">
-                    </i>
-                    </div>
+                    <button type="submit" class="btn bg-white text-primary search__icon">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </span>
+
                     </div>
                 </form>
 
@@ -101,9 +128,9 @@
                            href="{{ route('home') }}">@lang('site.home')<span
                                 class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-capitalize text-primary mr-2" href="#">@lang('site.about_us')</a>
-                    </li>
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-capitalize text-primary mr-2" href="#">@lang('site.about_us')</a>--}}
+                    {{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link text-capitalize text-primary mr-2" href="#">@lang('site.contact_us')</a>
                     </li>
@@ -177,6 +204,8 @@
 
 @yield('content')
 
+@include('partials._session')
+
 <footer id="footer" class="py-3 bg-primary text-center text-white">
 
     <p class="text-capitalize mb-0">Copyright © SARL-KA 2020 </p>
@@ -211,6 +240,19 @@
 
 <!-- Page specific javascripts-->
 <script src="{{ asset('dashboard_files/js/plugins/bootstrap-notify.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    $('.delete').click(function (e) {
+
+        var that = $(this)
+
+        e.preventDefault();
+
+        swal("@lang('site.deleted')", "", "success");
+    });
+</script>
 
 <!--owl slides scripts-->
 <script>

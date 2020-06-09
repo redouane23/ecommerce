@@ -20,7 +20,7 @@
         @endif
         @if (auth()->user()->hasPermission('read_suppliers'))
             <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.suppliers.index') }}"><i
-                        class="app-menu__icon fa fa-th"></i><span
+                        class="app-menu__icon fa fa-users"></i><span
                         class="app-menu__label">@lang('site.suppliers')</span></a></li>
         @endif
         @if (auth()->user()->hasPermission('read_products'))
@@ -30,13 +30,13 @@
         @endif
         @if (auth()->user()->hasPermission('read_clients'))
             <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.clients.index') }}"><i
-                        class="app-menu__icon fa fa-th"></i><span
+                        class="app-menu__icon fa fa-users"></i><span
                         class="app-menu__label">@lang('site.clients')</span></a></li>
         @endif
         @if (auth()->user()->hasPermission('read_orders'))
             <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.orders.index') }}"><i
-                        class="app-menu__icon fa fa-th"></i><span
-                        class="app-menu__label">@lang('site.orders')</span></a></li>
+                        class="app-menu__icon fa fa-shopping-basket"></i><span
+                        class="app-menu__label">@lang('site.all_orders')</span></a></li>
 
             {{--            <li class="treeview"><a class="app-menu__item text-capitalize" href="#"--}}
             {{--                                    data-toggle="treeview"><i--}}
@@ -63,6 +63,19 @@
             {{--                </ul>--}}
             {{--            </li>--}}
         @endif
+        <li><a class="app-menu__item text-capitalize"
+               href="{{ route('dashboard.clients.orders.index', auth()->user()->id) }}"><i
+                    class="app-menu__icon fa fa-shopping-cart"></i><span
+                    class="app-menu__label">@lang('site.your_orders')</span></a></li>
+
+        <li><a class="app-menu__item text-capitalize" href="#"><i
+                    class="app-menu__icon fa fa-envelope"></i><span
+                    class="app-menu__label">@lang('site.messages')</span></a></li>
+
+        <li><a class="app-menu__item text-capitalize" href="#"><i
+                    class="app-menu__icon fa fa-cogs"></i><span
+                    class="app-menu__label">@lang('site.setting')</span></a></li>
+
         @if (auth()->user()->hasPermission('read_users'))
             <li><a class="app-menu__item text-capitalize" href="{{ route('dashboard.users.index') }}"><i
                         class="app-menu__icon fa fa-user"></i><span

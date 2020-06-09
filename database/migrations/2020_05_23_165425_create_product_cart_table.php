@@ -17,6 +17,7 @@ class CreateProductCartTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('cart_id')->unsigned();
+            $table->double('price', 10, 0);
             $table->integer('quantity')->default(1);
 
 

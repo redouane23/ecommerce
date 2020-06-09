@@ -33,6 +33,19 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user->attachRole('super_admin');
+        $user->attachRole('admin');
+
+        $user->carts()->create([]);
+
+        $user = \App\User::create([
+            'first_name' => 'client',
+            'last_name' => 'client',
+            'email' => 'client@app.com',
+            'image' => 'default.png',
+            'password' => bcrypt('client')
+        ]);
+
+        $user->attachRole('client');
 
         $user->carts()->create([]);
 

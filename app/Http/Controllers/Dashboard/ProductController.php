@@ -43,7 +43,7 @@ class ProductController extends Controller
 
             return $query->where('supplier_id', $request->supplier_id);
 
-        })->latest()->paginate(5);
+        })->latest()->paginate(10);
 
         return view('dashboard.products.index', compact('categories', 'suppliers', 'products'));
     }
@@ -63,11 +63,11 @@ class ProductController extends Controller
             'category_id' => 'required',
             'supplier_id' => 'required',
             'name' => ['required', 'unique:products,name'],
-            'description' => ['required', 'unique:products,description'],
+            'description' => 'required',
             'image' => 'image',
             'purchase_price' => 'required',
             'sale_price' => 'required',
-            'stock' => 'required',
+            //'stock' => 'required',
         ]);
 
         $request_data = $request->except(['image']);
@@ -109,11 +109,11 @@ class ProductController extends Controller
             'category_id' => 'required',
             'supplier_id' => 'required',
             'name' => ['required', 'unique:products,name,' . $product->id . ',id'],
-            'description' => ['required', 'unique:products,description,' . $product->id . ',id'],
+            'description' => 'required',
             'image' => 'image',
             'purchase_price' => 'required',
             'sale_price' => 'required',
-            'stock' => 'required',
+            //'stock' => 'required',
         ]);
 
         $request_data = $request->except(['image']);

@@ -125,19 +125,19 @@
 
                                         </div>
 
-                                        <div class="form-group col-md-4">
+                                        {{--                                        <div class="form-group col-md-4">--}}
 
-                                            <label>@lang('site.stock')</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"></span></div>
-                                                <input type="number" name="stock" class="form-control"
-                                                       placeholder="@lang('site.quantity')" value="{{ old('stock') }}">
-                                                <div class="input-group-append"><span
-                                                        class="input-group-text"></span></div>
-                                            </div>
+                                        {{--                                            <label>@lang('site.stock')</label>--}}
+                                        {{--                                            <div class="input-group">--}}
+                                        {{--                                                <div class="input-group-prepend"><span--}}
+                                        {{--                                                        class="input-group-text"></span></div>--}}
+                                        {{--                                                <input type="number" name="stock" class="form-control"--}}
+                                        {{--                                                       placeholder="@lang('site.quantity')" value="{{ old('stock') }}">--}}
+                                        {{--                                                <div class="input-group-append"><span--}}
+                                        {{--                                                        class="input-group-text"></span></div>--}}
+                                        {{--                                            </div>--}}
 
-                                        </div>
+                                        {{--                                        </div>--}}
 
                                     </div>
                                 </div>

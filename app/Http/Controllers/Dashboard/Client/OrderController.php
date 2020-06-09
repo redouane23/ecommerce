@@ -21,6 +21,22 @@ class OrderController extends Controller
 
     }
 
+    public function index(Request $request)
+    {
+
+        $orders = Order::where('paid', '=', $request->paid)->where('user_id', '=', auth()->user()->id)->whereHas('user', function ($q) use ($request) {
+
+            return $q->where('first_name', 'like', '%' . $request->search . '%')
+                ->Orwhere('last_name', 'like', '%' . $request->search . '%');
+            //->where('user_id', '=', auth()->user()->id);
+
+        })->latest()->paginate(5);
+        //$orders = auth()->user()->orders()->paginate(5);
+
+        return view('dashboard.clients.orders.index', compact('orders'));
+
+    } //end of index
+
     public function create(User $client)
     {
 
@@ -29,6 +45,7 @@ class OrderController extends Controller
 
         return view('dashboard.clients.orders.create', compact('client', 'categories', 'orders'));
     }
+
 
     public function store(Request $request, User $client)
     {
@@ -78,19 +95,21 @@ class OrderController extends Controller
 
         $order = $client->orders()->create([]);
 
+        //dd($request->products);
+
         $order->products()->attach($request->products);
 
         $total_price = 0;
 
-        foreach ($request->products as $id => $quantity) {
+        foreach ($request->products as $product) {
 
-            $product = Product::FindOrFail($id);
+            //$product = Product::FindOrFail($id);
 
-            $total_price += $product->sale_price * $quantity['quantity'];
+            $total_price += $product['price'] * $product['quantity'];
 
-            $product->update([
-                'stock' => $product->stock - $quantity['quantity'],
-            ]);
+//            $product->update([
+//                'stock' => $product->stock - $product['quantity'],
+//            ]);
 
         }
 
@@ -104,9 +123,9 @@ class OrderController extends Controller
     {
         foreach ($order->products as $product) {
 
-            $product->update([
-                'stock' => $product->stock + $product->pivot->quantity,
-            ]);
+//            $product->update([
+//                'stock' => $product->stock + $product->pivot->quantity,
+//            ]);
         }
 
         $order->delete();

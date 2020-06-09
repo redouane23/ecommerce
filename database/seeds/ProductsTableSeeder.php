@@ -12,20 +12,23 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
 
-        $products = ['tomate', 'pomme'];
+        $products = ['tomate', 'apple', 'onion', 'watermelon', 'bread', 'egg'];
 
-        foreach ($products as $product) {
+        for ($i = 1; $i <= 2; $i++) {
+            foreach ($products as $product) {
 
-            \App\Product::create([
-                'category_id' => 1,
-                'supplier_id' => 1,
-                'name' => $product,
-                'description' => $product . ' desc',
-                'purchase_price' => 5000,
-                'sale_price' => 10000,
-                'stock' => 10,
-            ]);
+                \App\Product::create([
+                    'category_id' => 1,
+                    'supplier_id' => 1,
+                    'name' => $product . '_' . $i,
+                    'description' => $product . ' desc',
+                    'purchase_price' => 5000,
+                    'sale_price' => 10000,
+                    'stock' => 10,
+                ]);
+            }
         }
+
 
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Cart;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,21 +17,23 @@ class OrderController extends Controller
         $this->middleware(['permission:read_orders'])->only('index');
         $this->middleware(['permission:delete_orders'])->only('destroy');
 
-    }
+    }//end of construct
+
 
     public function index(Request $request)
     {
 
-        $orders = Order::whereHas('user', function ($q) use ($request) {
+        $orders = Order::where('paid', 'like', '%' . $request->paid . '%')->whereHas('user', function ($q) use ($request) {
 
             return $q->where('first_name', 'like', '%' . $request->search . '%')
                 ->Orwhere('last_name', 'like', '%' . $request->search . '%');
 
-        })->paginate(5);
+        })->latest()->paginate(5);
 
         return view('dashboard.orders.index', compact('orders'));
 
     } //end of index
+
 
     public function destroy(Order $order)
     {
@@ -48,6 +52,7 @@ class OrderController extends Controller
 
     } //end of destroy
 
+
     public function products(Order $order)
     {
 
@@ -56,5 +61,18 @@ class OrderController extends Controller
         return view('dashboard.orders._products', compact('order', 'products'));
 
     } //end of products
+
+
+    public function confirm(Request $request)
+    {
+
+        $order = Order::find($request->order);
+        $order->update([
+            'paid' => !$order->paid
+        ]);
+
+        return response()->json(['success' => __('site.updated_successfully'), 'order' => $order, 'confirm' => __('site.confirm'), 'canceled' => __('site.cancel')]);
+
+    }//end of confirm function
 
 } // end of controller

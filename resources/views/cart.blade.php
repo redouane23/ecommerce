@@ -49,7 +49,7 @@
                                 </td>
                                 <td>{{ $product->name }}</td>
                                 <td style="text-align: right"
-                                    id="price{{ $product->id }}">{{ number_format($product->sale_price , 0) }} DZD
+                                    id="price{{ $product->id }}">{{ number_format($product->pivot->price , 0) }} DZD
                                 </td>
                                 <td>
                                     <div class="form-control input-sm cart__table-input text-center mb-2"
@@ -78,7 +78,7 @@
                                 </td>
                                 <td style="text-align: right">
                                         <span
-                                            id="total_price{{ $product->id }}">{{ number_format($product->sale_price * $product->pivot->quantity, 0) }}</span>
+                                            id="total_price{{ $product->id }}">{{ number_format($product->pivot->price * $product->pivot->quantity, 0) }}</span>
                                     DZD
                                 </td>
 
@@ -107,9 +107,12 @@
 
                     </table><!--end of table-->
 
-                    <a class="btn btn-primary text-white text-capitalize fa-pull-right cart__cnf">
+                    <button
+                        class="btn btn-primary text-white text-capitalize fa-pull-right cart__cnf confirm-cart-btn"
+                        data-cart="{{ Auth::user()->cart()->id }}"
+                        data-route="{{ route('carts.confirm') }}">
                         @lang('site.confirm_your_order')
-                    </a>
+                    </button>
 
                 </div><!--end of col-->
 

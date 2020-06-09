@@ -40,18 +40,24 @@ return [
 
     'no_data_found' => 'Aucune donnée disponible',
     'no_records' => 'Aucune donnée disponible',
+    'no_products' => 'Aucune produit disponible',
 
     'clients' => 'clients',
     'client_name' => 'Nom de Client',
     'phone' => 'Téléphone',
     'address' => 'Adresse',
     'previous_orders' => 'Commandes précédentes',
-    'orders' => 'Ordres',
-    'all_orders' => 'toutes ordres',
-    'pending_orders' => 'les ordres en attente',
-    'orders_received' => 'commandes reçues',
+    'orders' => 'Commandes',
+    'all_orders' => 'Tous commandes',
+    'your_orders' => 'Vos commandes',
+    'pending' => 'En attente',
+    'confirmed' => 'Confirmé',
     'add_order' => 'Ajouter une commande',
     'edit_order' => 'Modifier la commande',
+    'setting' => 'Paramètres',
+    'messages' => 'Messages',
+    'confirm' => 'Confirmer',
+    'cancel' => 'Anuller',
 
     'suppliers' => 'Fournisseurs',
     'supplier_name' => 'nom de fournisseur',
@@ -89,6 +95,8 @@ return [
     'stock' => 'Stock',
     'profit_percent' => 'Profit',
     'amount' => 'Montant',
+    'info' => 'info',
+
     'cart' => 'panier',
     'add_to_cart' => 'ajouter au panier',
     'added_to_cart' => 'ajouté au panier',
@@ -96,7 +104,10 @@ return [
     'deleted_from_cart' => 'supprimé du panier',
     'empty_cart' => 'panier vide',
     'confirm_your_order' => 'confirmer votre commande',
-    'info' => 'info',
+    'order_has_been_confirmed' => 'commande a été confirmé',
+    'cart_sent' => 'La commande a été envoyée',
+    'thanks' => 'Merci beaucoup',
+
 
     'ar' => [
         'name' => 'الاسم بالغه العربيه',

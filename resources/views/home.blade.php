@@ -56,7 +56,7 @@
 
     @foreach ($categories as $category)
 
-        @if ($category->limitProducts->count() > 0)
+        @if ($category->products->count() > 0)
 
             <section class="listing mb-4">
 
@@ -67,7 +67,8 @@
                         <div class="col-12 d-flex justify-content-between">
 
                             <h3 class="listing__title text-dark fw-500 text-capitalize">{{ $category->name }}</h3>
-                            <a href="" class="align-self-center text-primary text-capitalize">@lang('site.see_all')</a>
+                            <a href="{{ route('products', ['category_id' => $category->id]) }}"
+                               class="align-self-center text-primary text-capitalize">@lang('site.see_all')</a>
 
                         </div>
 
@@ -75,7 +76,7 @@
 
                     <div class="row">
 
-                        @foreach ($category->limitProducts as $product)
+                        @foreach ($category->products->slice(0, 4) as $product)
 
                             <div class="product col-12 my-2 col-md-3">
 
@@ -111,7 +112,8 @@
                                         <a
                                             class="btn {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? 'btn-danger disabled text-white' : 'btn-outline-primary add-product-btn text-primary' }} product__details-button text-capitalize flex-fill mr-1"
                                             data-id="{{ $product->id }}"
-                                            data-cart="{{ Auth::user()->cart()->id }}">
+                                            data-cart="{{ Auth::user()->cart()->id }}"
+                                            data-route="{{ route('carts.add') }}">
                                                                                 <span
                                                                                     class="fas fa-shopping-cart"></span>
                                             {{ in_array($product->id, Auth::user()->cart()->products->pluck('id')->toArray()) ? Lang::get('site.added_to_cart') : Lang::get('site.add_to_cart') }}

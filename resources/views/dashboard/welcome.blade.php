@@ -61,8 +61,8 @@
             <div class="col-md-6 col-lg-3">
                 <div class="widget-small warning coloured-icon"><i class="icon fa fa-file-text fa-3x"></i>
                     <div class="info">
-                        <h4>@lang('site.pending_orders')</h4>
-                        <p><b>{{ $orders->count() }}</b></p>
+                        <h4>@lang('site.pending')</h4>
+                        <p><b>{{ $orders_pending->count() }}</b></p>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,8 @@
             <div class="col-md-6 col-lg-3">
                 <div class="widget-small primary coloured-icon"><i class="icon fa fa-money fa-3x"></i>
                     <div class="info">
-                        <h4>@lang('site.orders_received')</h4>
-                        <p><b>{{ $orders->count() }}</b></p>
+                        <h4>@lang('site.confirmed')</h4>
+                        <p><b>{{ $orders_confirmed->count() }}</b></p>
                     </div>
                 </div>
             </div>

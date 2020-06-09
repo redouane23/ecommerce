@@ -8,39 +8,63 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
 
-        $categories = Category::with('limitProducts')->get()->all();
+        $categories = Category::with('products')->get()->all();
+
+        if ($request->search != null or $request->category_id != null) {
+            return redirect()->route('products', ['search' => $request->search, 'category_id' => $request->category_id]);
+        }
+
         return view('home', compact('categories'));
-    }
+    }//end of index function
 
-    public function product($id)
+
+    public function products(Request $request)
     {
 
+        $categories = Category::all();
+
+        $products = Product::when($request->search, function ($query) use ($request) {
+
+            return $query->where('name', 'like', '%' . $request->search . '%')
+                ->orwhere('description', 'like', '%' . $request->search . '%');
+
+        })->when($request->category_id, function ($query) use ($request) {
+
+            return $query->where('category_id', $request->category_id);
+
+        })->latest()->paginate(12);
+
+        return view('products', compact('categories', 'products'));
+    }//end of products function
+
+
+    public function product(Request $request, $id)
+    {
+
+        $categories = Category::all();
         $product = Product::find($id);
 
-        return view('product', compact('product'));
-    }
+        if ($request->search != null or $request->category_id != null) {
+            return redirect()->route('products', ['search' => $request->search, 'category_id' => $request->category_id]);
+        }
 
-    public function cart()
+        return view('product', compact('product', 'categories'));
+    }//end of product function
+
+
+    public function cart(Request $request)
     {
+        $categories = Category::all();
 
-        return view('cart');
-    }
-}
+        if ($request->search != null or $request->category_id != null) {
+            return redirect()->route('products', ['search' => $request->search, 'category_id' => $request->category_id]);
+        }
+
+        return view('cart', compact('categories'));
+    }//end of cart function
+
+}//end of controller

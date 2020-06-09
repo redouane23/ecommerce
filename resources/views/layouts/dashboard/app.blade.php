@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 <head>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
@@ -199,7 +201,6 @@
 <!-- Page specific javascripts-->
 <script src="{{ asset('dashboard_files/js/plugins/bootstrap-notify.min.js') }}"></script>
 <script src="{{ asset('dashboard_files/js/plugins/sweetalert.min.js') }}"></script>
-<script src="{{ asset('dashboard_files/js/plugins/select2.min.js') }}"></script>
 {{--ckeditor standard--}}
 <script src="{{ asset('dashboard_files/js/plugins/ckeditor/ckeditor.js') }}"></script>
 {{--print this--}}

@@ -10,6 +10,13 @@ $(document).ready(function () {
 
     });
 
+    //disabled btn
+    $('body').on('click', '.disabled', function (e) {
+
+        e.preventDefault();
+
+    });//end of disabled
+
     //add product btn
     $('.add-product-btn').on('click', function (e) {
 
@@ -19,18 +26,21 @@ $(document).ready(function () {
 
         var id = $(this).data('id');
         var cart = $(this).data('cart');
+        var route = $(this).data('route');
 
-        //alert(cart);
+        //alert(route);
 
 
         $.ajax({
 
             type: 'POST',
             data: {product_id: id, cart: cart},
-            url: 'carts/add',
+            url: route,
 
 
             success: function (data) {
+
+                //alert('ggg');
 
                 $('.cart-count').html(data.cartCount);
 
@@ -53,14 +63,7 @@ $(document).ready(function () {
 
         //alert(id);
 
-    });
-
-    //disabled btn
-    $('body').on('click', '.disabled', function (e) {
-
-        e.preventDefault();
-
-    });//end of disabled
+    });//end of add product btn
 
     //update product btn
     $('body').on('click', '.update-product-btn', function (e) {
@@ -169,71 +172,39 @@ $(document).ready(function () {
 
     });//end of remove product btn
 
-    //change product quantity
-    $('body').on('keyup change', '.product-quantity', function () {
-
-        var quantity = Number($(this).val()); //2
-        var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); //150
-        console.log(unitPrice);
-        $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice, 2));
-        calculateTotal();
-
-    });//end of product quantity change
-
-    //list all order products
-    $('.order-products').on('click', function (e) {
+    //confirm cart btn
+    $('body').on('click', '.confirm-cart-btn', function (e) {
 
         e.preventDefault();
+        var cart = $(this).data('cart');
+        var route = $(this).data('route');
 
-        $('#loading').css('display', 'flex');
 
-        var url = $(this).data('url');
-        var method = $(this).data('method');
         $.ajax({
-            url: url,
-            method: method,
+
+            type: 'POST',
+            data: {cart: cart},
+            url: route,
+
+
             success: function (data) {
 
-                $('#loading').css('display', 'none');
-                $('#order-product-list').empty();
-                $('#order-product-list').append(data);
+                swal(data.success, data.title, "success")
+                    .then(() => {
+                            document.location.href = data.url
+                        }
+                    );
+
+
+            },
+            error: function (data) {
+
+                console.log('Error:', data);
 
             }
-        })
 
-    });//end of order products click
+        });
 
-    //print order
-    $(document).on('click', '.print-btn', function () {
-
-        $('#print-area').printThis();
-
-    });//end of click function
+    });//end of confirm cart btn
 
 });//end of document ready
-
-//calculate the total
-function calculateTotal() {
-
-    var price = 0;
-
-    $('.order-list .product-price').each(function (index) {
-
-        price += parseFloat($(this).html().replace(/,/g, ''));
-
-    });//end of product price
-
-    $('.total-price').html($.number(price, 2));
-
-    //check if price > 0
-    if (price > 0) {
-
-        $('#add-order-form-btn').removeClass('disabled')
-
-    } else {
-
-        $('#add-order-form-btn').addClass('disabled')
-
-    }//end of else
-
-}//end of calculate total

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -36,4 +37,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    public function showLoginForm()
+    {
+        $categories = Category::all();
+
+        return view('auth.login', compact('categories'));
+    }
+
 }
