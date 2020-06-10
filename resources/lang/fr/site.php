@@ -49,7 +49,7 @@ return [
     'previous_orders' => 'Commandes précédentes',
     'orders' => 'Commandes',
     'all_orders' => 'Tous commandes',
-    'your_orders' => 'Vos commandes',
+    'my_orders' => 'Nos commandes',
     'pending' => 'En attente',
     'confirmed' => 'Confirmé',
     'add_order' => 'Ajouter une commande',

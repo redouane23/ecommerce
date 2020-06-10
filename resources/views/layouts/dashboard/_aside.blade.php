@@ -65,9 +65,9 @@
             {{--            </li>--}}
         @endif
         <li><a class="app-menu__item text-capitalize"
-               href="{{ route('dashboard.clients.orders.index', auth()->user()->id) }}"><i
+               href="{{ route('dashboard.myorders', auth()->user()->id) }}"><i
                     class="app-menu__icon fa fa-shopping-cart"></i><span
-                    class="app-menu__label">@lang('site.your_orders')</span></a></li>
+                    class="app-menu__label">@lang('site.my_orders')</span></a></li>
 
         <li><a class="app-menu__item text-capitalize" href="#"><i
                     class="app-menu__icon fa fa-envelope"></i><span

@@ -22,9 +22,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // order routes
         Route::resource('orders', 'OrderController');
         Route::get('orders/{order}/products', 'OrderController@products')->name('orders.products');
-        // confirm cart
-        Route::post('orders/confirm', 'OrderController@confirm')->name('order.confirm');
+        Route::post('orders/confirm', 'OrderController@confirm')->name('order.confirm');// confirm cart
 
+        // myorder routes
+        Route::get('myorders/{client}', 'MyorderController@index')->name('myorders');
+        Route::get('myorders/{order}/edit', 'MyorderController@edit')->name('myorders.edit');
+        Route::put('myorders/{order}', 'MyorderController@update')->name('myorders.update');
+        Route::delete('myorders/{order}', 'MyorderController@destroy')->name('myorders.destroy');
 
         // user routes
         Route::resource('users', 'UserController')->except(['show']);

@@ -83,7 +83,7 @@ class OrderController extends Controller
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->route('dashboard.orders.index');
 
-    }
+    }//end of update
 
     public function destroy(Order $order, User $client)
     {

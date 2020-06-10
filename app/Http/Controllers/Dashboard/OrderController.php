@@ -34,17 +34,31 @@ class OrderController extends Controller
 
     } //end of index
 
+    public function myorders(Request $request)
+    {
+
+        $orders = Order::where('user_id', '=', auth()->user()->id)->where('paid', 'like', '%' . $request->paid . '%')->whereHas('user', function ($q) use ($request) {
+
+            return $q->where('first_name', 'like', '%' . $request->search . '%')
+                ->Orwhere('last_name', 'like', '%' . $request->search . '%');
+
+        })->latest()->paginate(5);
+
+        return view('dashboard.orders.myorders', compact('orders'));
+
+    } //end of index
+
 
     public function destroy(Order $order)
     {
 
-        foreach ($order->products as $product) {
-
-
-            $product->update([
-                'stock' => $product->stock + $product->pivot->quantity
-            ]);
-        }
+//        foreach ($order->products as $product) {
+//
+//
+//            $product->update([
+//                'stock' => $product->stock + $product->pivot->quantity
+//            ]);
+//        }
 
         $order->delete();
         session()->flash('success', __('site.deleted_successfully'));
