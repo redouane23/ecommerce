@@ -109,7 +109,7 @@ class UserController extends Controller
             if ($user->image != 'default.png') {
 
                 //Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
-                Storage::delete('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image);
+                //Storage::delete('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image);
 
             } //end of if
 
@@ -122,7 +122,7 @@ class UserController extends Controller
 
             //$extention = $request->file('image')->getExtension();
 
-            $request->file('image')->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+            $path = $request->file('image')->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
             $request_data['image'] = $request->image->hashName();
 
