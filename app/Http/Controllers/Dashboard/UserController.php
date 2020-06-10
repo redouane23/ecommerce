@@ -113,12 +113,16 @@ class UserController extends Controller
 
             } //end of if
 
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
-                ->save('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+//            Image::make($request->image)
+//                ->resize(300, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                })
+//                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
+//                ->save('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+
+            //$extention = $request->file('image')->getExtension();
+
+            $request->file('image')->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
             $request_data['image'] = $request->image->hashName();
 
