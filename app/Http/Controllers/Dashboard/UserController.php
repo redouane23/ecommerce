@@ -72,8 +72,6 @@ class UserController extends Controller
             $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);
             $request_data['image'] = $hashName;
 
-            $request_data['image'] = $request->image->hashName();
-
         } //end of if
 
         $user = User::create($request_data);
