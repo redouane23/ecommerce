@@ -122,7 +122,7 @@ class UserController extends Controller
 
             $extention = $request->file('image')->getExtension();
 
-            $path = $request->file('image')->move(base_path() . '/public/uploads/user_images/' . $request->image->hashName() . $extention);
+            $path = $request->file('image')->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName() . $extention);
 
             $request_data['image'] = $request->image->hashName();
 
