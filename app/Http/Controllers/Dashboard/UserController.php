@@ -120,9 +120,9 @@ class UserController extends Controller
 //                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
 //                ->save('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
-            //$extention = $request->file('image')->getExtension();
+            $extention = $request->file('image')->getExtension();
 
-            $path = $request->file('image')->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+            $path = $request->file('image')->move(base_path() . '/public/uploads/user_images/' . $request->image->hashName() . $extention);
 
             $request_data['image'] = $request->image->hashName();
 
