@@ -61,13 +61,16 @@ class UserController extends Controller
 
         if ($request->image) {
 
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
-                ->save(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+//            Image::make($request->image)
+//                ->resize(300, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                })
+//                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
+//                ->save(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
+            $hashName = $request->image->hashName();
+            $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);
+            $request_data['image'] = $hashName;
 
             $request_data['image'] = $request->image->hashName();
 
@@ -108,8 +111,7 @@ class UserController extends Controller
 
             if ($user->image != 'default.png') {
 
-                //Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
-                //Storage::delete('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image);
+                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
 
             } //end of if
 
@@ -118,16 +120,10 @@ class UserController extends Controller
 //                    $constraint->aspectRatio();
 //                })
 //                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
-//                ->save('public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
 
-            //dd($request->image);
-
-            //$extention = $request->file('image')->getClientOriginalExtension();
 
             $hashName = $request->image->hashName();
-
             $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);
-
             $request_data['image'] = $hashName;
 
         } //end of if
@@ -146,8 +142,7 @@ class UserController extends Controller
 
         if ($user->image != 'default.png') {
 
-            //Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
-            Storage::delete('public\uploads\user_images' . DIRECTORY_SEPARATOR . $user->image);
+            Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
 
         } //end of if
 
