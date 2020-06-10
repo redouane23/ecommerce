@@ -67,10 +67,13 @@ class UserController extends Controller
 //                })
 //                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
 //                ->save(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR . $request->image->hashName());
+//
+//            $request_data['image'] = $request->image->hashName();
 
             $hashName = $request->image->hashName();
             $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);
             $request_data['image'] = $hashName;
+
 
         } //end of if
 
@@ -118,7 +121,8 @@ class UserController extends Controller
 //                    $constraint->aspectRatio();
 //                })
 //                //->save(public_path('uploads/user_images/' . $request->image->hashName()));
-
+//
+//            $request_data['image'] = $request->image->hashName();
 
             $hashName = $request->image->hashName();
             $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);

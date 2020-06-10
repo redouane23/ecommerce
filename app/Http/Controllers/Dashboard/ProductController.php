@@ -74,13 +74,17 @@ class ProductController extends Controller
 
         if ($request->image) {
 
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save(public_path('uploads/product_images/' . $request->image->hashName()));
+//            Image::make($request->image)
+//                ->resize(300, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                })
+//                ->save(public_path('uploads/product_images/' . $request->image->hashName()));
+//
+//            $request_data['image'] = $request->image->hashName();
 
-            $request_data['image'] = $request->image->hashName();
+            $hashName = $request->image->hashName();
+            $request->image->move(base_path() . '/public/uploads/product_images/', $hashName);
+            $request_data['image'] = $hashName;
 
         } //end of if
 
@@ -120,13 +124,17 @@ class ProductController extends Controller
 
         if ($request->image) {
 
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save(public_path('uploads/product_images/' . $request->image->hashName()));
+//            Image::make($request->image)
+//                ->resize(300, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                })
+//                ->save(public_path('uploads/product_images/' . $request->image->hashName()));
+//
+//            $request_data['image'] = $request->image->hashName();
 
-            $request_data['image'] = $request->image->hashName();
+            $hashName = $request->image->hashName();
+            $request->image->move(base_path() . '/public/uploads/product_images/', $hashName);
+            $request_data['image'] = $hashName;
 
         } //end of if
 
