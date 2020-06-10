@@ -126,7 +126,7 @@ class UserController extends Controller
 
             $hashName = $request->image->hashName();
 
-            $request->image->move(base_path() . '\public\uploads\user_images' . DIRECTORY_SEPARATOR, $request->image->hashName());
+            $request->image->move(base_path() . '/public/uploads/user_images/', $hashName);
 
             $request_data['image'] = $hashName;
 
