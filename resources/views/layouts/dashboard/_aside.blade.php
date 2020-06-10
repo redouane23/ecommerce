@@ -2,12 +2,8 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
     <div class="app-sidebar__user">
-        {{--        <img class="app-sidebar__user-avatar" style="height: 36px;width: 36px"--}}
-        {{--             src="{{ auth()->user()->image_path }}"--}}
-        {{--             alt="User Image">--}}
-
         <img class="app-sidebar__user-avatar" style="height: 36px;width: 36px"
-             src="{{ URL::to('/') }}/uploads/user_images/{{ auth()->user()->image }}"
+             src="{{ auth()->user()->image_path }}"
              alt="User Image">
         <div>
             <p class="app-sidebar__user-name">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>

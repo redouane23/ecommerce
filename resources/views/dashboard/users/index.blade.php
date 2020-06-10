@@ -79,13 +79,8 @@
                                                 <td>{{ $user->last_name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
-                                                    {{--                                                    <img src="{{ $user->image_path }}" style="width: 100px"--}}
-                                                    {{--                                                         class="img-thumbnail">--}}
-
-                                                    <img
-                                                        src="{{ URL::to('/') }}/uploads/user_images/{{ $user->image }}"
-                                                        style="width: 100px"
-                                                        class="img-thumbnail">
+                                                    <img src="{{ $user->image_path }}" style="width: 100px"
+                                                         class="img-thumbnail">
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
