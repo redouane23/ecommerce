@@ -22,7 +22,9 @@ class WelcomeController extends Controller
         $clients = User::whereRoleIs('client');
         $orders_pending = Order::where('paid', '=', '0');
         $orders_confirmed = Order::where('paid', '=', '1');
-        return view('dashboard.welcome', compact('users', 'categories', 'suppliers', 'products', 'clients', 'orders_pending', 'orders_confirmed'));
+        $my_orders_pending = Order::where('user_id', '=', auth()->user()->id)->where('paid', '=', '0');
+        $my_orders_confirmed = Order::where('user_id', '=', auth()->user()->id)->where('paid', '=', '1');
+        return view('dashboard.welcome', compact('users', 'categories', 'suppliers', 'products', 'clients', 'orders_pending', 'orders_confirmed', 'my_orders_pending', 'my_orders_confirmed'));
 
     }// end of index
 

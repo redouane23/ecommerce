@@ -132,7 +132,8 @@
                     {{--                        <a class="nav-link text-capitalize text-primary mr-2" href="#">@lang('site.about_us')</a>--}}
                     {{--                    </li>--}}
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-primary mr-2" href="#">@lang('site.contact_us')</a>
+                        <a class="nav-link text-capitalize text-primary mr-2"
+                           href="{{ route('contact') }}">@lang('site.contact_us')</a>
                     </li>
                     <!-- Authentication Links -->
                     @guest

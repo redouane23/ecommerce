@@ -70,13 +70,13 @@
                         </form><!--end of form-->
 
 
-                        <div style="display: none">
+                        <div style="display: block">
 
                             <hr>
-                            <button class="btn btn-block btn-primary" style="background: #3b5998">
+                            <a href="login/github" class="btn btn-block btn-primary" style="background: #3b5998">
                                 <span class="fab fa-facebook-f"></span>
                                 Login by facebook
-                            </button>
+                            </a>
                             <button class="btn btn-block btn-primary" style="background: #dd4b39">
                                 <span class="fab fa-google"></span>
                                 Login by google+

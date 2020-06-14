@@ -13,7 +13,7 @@ return [
         'admin' => [],
         'client' => [
             //'products' => 'r',
-            'orders' => 'c,r,u,d',
+            //'orders' => 'c,r,u,d',
         ],
     ],
     'permissions_map' => [

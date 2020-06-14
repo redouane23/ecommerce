@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "5.7.*",
+        "laravel/socialite": "^4.4",
         "laravel/tinker": "^1.0",
         "mcamara/laravel-localization": "^1.5",
         "santigarcor/laratrust": "5.0.*"

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use Notifiable;
@@ -17,18 +17,21 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+    protected
+        $fillable = [
         'first_name', 'last_name', 'email', 'password', 'image'
     ];
 
-    protected $appends = ['image_path'];
+    protected
+        $appends = ['image_path'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
+    protected
+        $hidden = [
         'password', 'remember_token',
     ];
 
@@ -37,44 +40,51 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
+    protected
+        $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function getFirstNameAttribute($value)
+    public
+    function getFirstNameAttribute($value)
     {
 
         return ucfirst($value);
 
     } // end of get first name
 
-    public function getLastNameAttribute($value)
+    public
+    function getLastNameAttribute($value)
     {
 
         return ucfirst($value);
 
     } // end of get last name
 
-    public function getImagePathAttribute()
+    public
+    function getImagePathAttribute()
     {
- 
+
         return asset('uploads/user_images/' . $this->image);
 
     } // end of get image path
 
-    public function orders()
+    public
+    function orders()
     {
 
         return $this->hasMany(Order::class);
     }// end of orders
 
-    public function carts()
+    public
+    function carts()
     {
 
         return $this->hasMany(Cart::class);
     }// end of carts
 
-    public function cart()
+    public
+    function cart()
     {
 
         if ($this->carts->isEmpty()) {

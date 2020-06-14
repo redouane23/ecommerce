@@ -67,4 +67,15 @@ class HomeController extends Controller
         return view('cart', compact('categories'));
     }//end of cart function
 
+    public function contact(Request $request)
+    {
+        $categories = Category::all();
+
+        if ($request->search != null or $request->category_id != null) {
+            return redirect()->route('products', ['search' => $request->search, 'category_id' => $request->category_id]);
+        }
+
+        return view('contact', compact('categories'));
+    }//end of contact function
+
 }//end of controller
