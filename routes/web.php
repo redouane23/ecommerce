@@ -40,3 +40,7 @@ Route::post('carts/confirm', 'Dashboard\CartController@confirm')->name('carts.co
 //GITHUB routes
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+
+//FACEBOOK routes
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
